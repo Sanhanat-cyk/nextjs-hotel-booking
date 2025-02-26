@@ -1,60 +1,37 @@
+'use client';
 import Image from "next/image";
-import Nav from "../app/component/navbar";
-
+import Card from "../app/component/card"
+import DestinationDropdown from "./component/SearchableDropdownMenu"
 export default function Home() {
-  return (
-    <main className="bg-gray-200 mx-auto">
-      <Nav />
+
   
-      <div className="container mx-auto">
-      <article className="bg-white p-6 mx-6 mt-6 border rounded-xl shadow-md">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <Image
-              src="/hotel-image.jpg"
-              alt="Hotel"
-              width={176} // กำหนดความกว้าง
-              height={176} // กำหนดความสูง
-              className="object-cover rounded-lg"
-            />
-            <div className="ml-6">
-              <h3 className="text-lg font-semibold">Hotel Name</h3>
-              <p className="text-sm text-gray-600">Location</p>
-              <p className="text-sm text-gray-600">Amenities</p>
-              <div className="my-2">
-                <h6 className="text-sm font-semibold">room</h6>
-                <p className="text-sm text-gray-600">1x bed</p>
-                <p className="text-sm text-gray-600">1x bathroom</p>
-              </div>
-              <div className="flex flex-row space-x-2">
-                <h4 className="border-blue-500 text-blue-500 border py-1 px-6 rounded-full text-xs">
-                  #hot Deal
-                </h4>
-                <h4 className="border-blue-500 text-blue-500 border py-1 px-6 rounded-full text-xs">
-                  #Popular
-                </h4>
-              </div>
-            </div>
-          </div>
-          <div className="text-right">
-            <div className="flex items-center justify-end mb-2">
-              <div className="flex flex-col mx-1">
-                <h4 className="text-green-500 font-bold text-sm">rate</h4>
-                <p className="text-xs text-gray-600">reviews</p>
-              </div>
-              <div className="bg-green-200 font-bold text-xl text-green-500 border py-2 px-4 rounded-full">
-                <p>8.8</p>
-              </div>
-            </div>
-            <p className="text-xl font-bold">฿1,500</p>
-            <p className="text-sm text-gray-600">3 nights, 2 guest</p>
-            <button className="bg-blue-600 text-white py-2 px-8 rounded-full mt-2">
-              See Booking options
-            </button>
-          </div>
-        </div>
-      </article>
+    const handleDropdownChange = (value: string) => {
+      console.log('Selected value:', value);
+    };
+    const options = [
+      { value: 'account-settings', label: 'Account settings' },
+      { value: 'support', label: 'Support' },
+      { value: 'license', label: 'License' },
+      { value: 'sign-out', label: 'Sign out' },
+      { value: 'profile', label: 'Profile' },
+      { value: 'settings', label: 'Settings' },
+  ];
+  return (
+
+    <main className="bg-white py-2">
+      <div className="container mx-auto text-start p-6">
+        <p>20 filterred resultes for:Copenhagen,9-12.Dec,2 gust,1 room</p>
+        <h1 className="text-2xl font-bold">Brakfast in cluded</h1>
+        <DestinationDropdown options={options} />
       </div>
+      
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      
     </main>
   );
 }
