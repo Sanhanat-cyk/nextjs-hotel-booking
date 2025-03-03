@@ -1,37 +1,21 @@
 'use client';
-import Image from "next/image";
-import Card from "../app/component/card"
-import DestinationDropdown from "./component/SearchableDropdownMenu"
+import Link from 'next/link';
+import HeaderBanner from './component/Home/bannerHeader';
+import PoppularBanner from './component/Home/bannerPopular';
+import LovedBanner from './component/Home/bannerLoved';
+import SuggestBanner from './component/Home/bannerSuggest';
 export default function Home() {
-
-  
-    const handleDropdownChange = (value: string) => {
-      console.log('Selected value:', value);
-    };
-    const options = [
-      { value: 'account-settings', label: 'Account settings' },
-      { value: 'support', label: 'Support' },
-      { value: 'license', label: 'License' },
-      { value: 'sign-out', label: 'Sign out' },
-      { value: 'profile', label: 'Profile' },
-      { value: 'settings', label: 'Settings' },
-  ];
   return (
-
-    <main className="bg-white py-2">
-      <div className="container mx-auto text-start p-6">
-        <p>20 filterred resultes for:Copenhagen,9-12.Dec,2 gust,1 room</p>
-        <h1 className="text-2xl font-bold">Brakfast in cluded</h1>
-        <DestinationDropdown options={options} />
+    <main className="w-full bg-white py-2">
+      <div > {/* เพิ่ม Flexbox และ items-center */}
+        <HeaderBanner />
+        <h3 className='px-10 my-2 font-semibold'>Poppular destinetion</h3>
+        <PoppularBanner />
+        <h3 className='px-10 my-2 font-semibold'>Hotels loved by guests</h3>
+        <LovedBanner />
+       
+        <SuggestBanner />
       </div>
-      
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      
     </main>
   );
 }

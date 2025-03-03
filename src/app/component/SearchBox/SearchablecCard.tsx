@@ -24,10 +24,10 @@ export default function Card() {
                 <p className="text-sm text-gray-600">1x bathroom</p>
               </div>
               <div className="flex flex-row space-x-2">
-                <h4 className="border-blue-500 text-blue-500 border py-1 px-6 rounded-full text-xs">
+                <h4 className="border-blue-500 text-blue-500 border py-1 px-6 rounded-3xl text-xs">
                   #hot Deal
                 </h4>
-                <h4 className="border-blue-500 text-blue-500 border py-1 px-6 rounded-full text-xs">
+                <h4 className="border-blue-500 text-blue-500 border py-1 px-6 rounded-3xl text-xs">
                   #Popular
                 </h4>
               </div>

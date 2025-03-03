@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Nav from "../app/component/navbar"
-import SearchableBox from "./component/SearchableBox"
-import SearchableFilter from "./component/SearchableFilter";
+import Nav from "../app/component/navbar";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,34 +23,33 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  const options = [
-    { value: 'account-settings', label: 'Account settings' },
-    { value: 'support', label: 'Support' },
-    { value: 'license', label: 'License' },
-    { value: 'sign-out', label: 'Sign out' },
-    { value: 'profile', label: 'Profile' },
-    { value: 'settings', label: 'Settings' },
-  ];
-
   return (
-    <html lang="en" >  
-      <body >
-      <div className="grid grid-rows-[auto_1fr_auto] grid-cols-[300px_1fr] min-h-screen ">
-      <header className="col-span-2 border border-b-gray-200">
-        <Nav />
-      </header>
-      <aside className="col-span-1 bg-gray-100 row-start-2 border border-r-gray-200">
-      <SearchableBox />
-      <SearchableFilter />
-      </aside>
-      <main  className="col-span-1 row-start-2">
-        {children}
-      </main>
-      <footer className="col-span-2 row-start-3 bg-gray-300 p-5 border-t-gray-200">
-        Footer
-      </footer>
-    </div>
+    <html lang="en">
+      <body className="flex flex-col min-h-screen"> {/* เพิ่ม min-h-screen และ flex-col */}
+        <div className="flex flex-col flex-grow"> {/* เพิ่ม flex-grow */}
+          <header className="col-span-2 border border-b-gray-200">
+            <Nav />
+          </header>
+
+          <main className="flex flex-col flex-grow"> {/* เพิ่ม flex-grow */}
+            {children}
+          </main>
+        </div>
+        <footer className="flex flex-row justify-between bg-gray-200 p-4"> {/* เพิ่ม p-4 เพื่อ padding */}
+          <div>
+          <p className='font-semibold'>Tripter</p>
+            <p>Your favorite hotel booking experience</p>
+            <p>since 1998!</p>
+          </div>
+
+          <div>
+            <p>Help</p>
+            <p>FAQ</p>
+            <p>Customer service</p>
+            <p>How to guide</p>
+            <p>Contact us</p>
+          </div>
+        </footer>
       </body>
     </html>
   );
