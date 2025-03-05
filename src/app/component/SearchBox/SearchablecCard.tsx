@@ -1,57 +1,111 @@
 import Image from "next/image";
-
-export default function Card() {
+interface CardProps {
+  key: number | string;
+  name: string;
+  introduction: string;
+  imageUrl: string;
+  shaName: string | undefined;
+  shaIcon: string | undefined;
+  viewer: number;
+  tags: string[] | []
+}
+export default function Card({ name, introduction, imageUrl, shaName, shaIcon, viewer, tags }: CardProps) {
   return (
-   
-      <div className="container mx-auto">
+
+    <div className="container mx-auto">
+
       <article className="bg-white p-6 mx-6 mt-6 border rounded-xl shadow-md">
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <Image
-              src="/hotel-image.jpg"
-              alt="Hotel"
-              width={176} // กำหนดความกว้าง
-              height={176} // กำหนดความสูง
-              className="object-cover rounded-lg"
-            />
-            <div className="ml-6">
-              <h3 className="text-lg font-semibold">Hotel Name</h3>
-              <p className="text-sm text-gray-600">Location</p>
-              <p className="text-sm text-gray-600">Amenities</p>
-              <div className="my-2">
-                <h6 className="text-sm font-semibold">room</h6>
-                <p className="text-sm text-gray-600">1x bed</p>
-                <p className="text-sm text-gray-600">1x bathroom</p>
+          
+          <div className="w-full">
+            <div className="flex items-center">
+              <div className="w-52 h-48">
+                <img src={imageUrl}
+                  alt={name}
+                  width={176}
+                  height={176}
+                  className="object-none rounded-lg w-full h-full " />
               </div>
-              <div className="flex flex-row space-x-2">
-                <h4 className="border-blue-500 text-blue-500 border py-1 px-6 rounded-3xl text-xs">
-                  #hot Deal
-                </h4>
-                <h4 className="border-blue-500 text-blue-500 border py-1 px-6 rounded-3xl text-xs">
-                  #Popular
-                </h4>
+
+              <div className="ml-6 h-40 flex flex-col justify-between w-3/6">
+                
+                <div>
+                  <h3 className="text-lg font-semibold">{name}</h3>
+                  <p className="text-sm text-gray-600 line-clamp-2 overflow-hidden display-webkit-box webkit-box-orient-vertical">{introduction}</p>
+                </div>
+
+                <div className="flex flex-row">
+                  {shaName === 'SHA' ? (
+                    <h4 className="ml-2 border-green-500 text-green-500 border py-1 px-6 rounded-3xl text-xs">
+                      #{shaName}
+                    </h4>
+                  ) : shaName && (
+                    <h4 className="ml-2 border-blue-500 text-blue-500 border py-1 px-6 rounded-3xl text-xs">
+                      #{shaName}
+                    </h4>
+                  )}
+                  {Array.isArray(tags)
+                    ? tags.map((tag, index) => (
+                      <h4
+                        key={index}
+                        className=" ml-2 border-gray-500 text-gray-500 border py-1 px-6 rounded-3xl text-xs"
+                      >
+                        #{tag}
+                      </h4>
+                    ))
+                    : tags && (
+                      null
+                    )}
+                </div>
+
+
+
               </div>
+
             </div>
           </div>
-          <div className="text-right">
-            <div className="flex items-center justify-end mb-2">
-              <div className="flex flex-col mx-1">
-                <h4 className="text-green-500 font-bold text-sm">rate</h4>
-                <p className="text-xs text-gray-600">reviews</p>
-              </div>
+
+          <div className="text-right h-48  flex flex-col justify-between w-64">
+            <div className="flex flex-col items-end justify-end mx-1 ">
               <div className="bg-green-200 font-bold text-xl text-green-500 border py-2 px-4 rounded-3xl">
-                <p>8.8</p>
+                {viewer}
               </div>
+              <div className="flex flex-col ">
+                {/*<h4 className="text-green-500 font-bold text-sm">rate</h4>*/}
+                <p className="text-xs text-gray-600">views</p>
+              </div>
+
             </div>
-            <p className="text-xl font-bold">฿1,500</p>
-            <p className="text-sm text-gray-600">3 nights, 2 guest</p>
+            {shaName === 'SHA' ? (
+              // แสดงผลเมื่อ shaName เท่ากับ 'sha'
+              <div className="flex flex-row justify-end ">
+                <div className="w-20 h-20">
+                  <img src={shaIcon}
+                    alt={shaName}
+                    className="object-contain rounded-lg w-full h-full " />
+                </div>
+              </div>
+            ) : shaName && (
+              // แสดงผลเมื่อ shaName ไม่เท่ากับ 'sha' และไม่เป็นค่าว่าง
+              <div className="flex flex-row justify-end">
+                <div className="w-30 h-20">
+                  <img src={shaIcon}
+                    alt={shaName}
+                    className="object-contain rounded-lg w-full h-full " />
+                </div>
+              </div>
+            )}
+
+
             <button className="bg-blue-600 text-white py-2 px-8 rounded-3xl mt-2">
               See Booking options
             </button>
           </div>
         </div>
       </article>
-      </div>
+    </div>
+
+
 
   );
 }

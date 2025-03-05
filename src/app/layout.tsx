@@ -24,16 +24,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html >
       <body className="flex flex-col min-h-screen"> {/* เพิ่ม min-h-screen และ flex-col */}
         <div className="flex flex-col flex-grow"> {/* เพิ่ม flex-grow */}
           <header className="col-span-2 border border-b-gray-200">
             <Nav />
           </header>
 
-          <main className="flex flex-col flex-grow"> {/* เพิ่ม flex-grow */}
+          <div className="flex flex-col flex-grow"> {/* เพิ่ม flex-grow */}
             {children}
-          </main>
+          </div>
         </div>
         <footer className="flex flex-row justify-between bg-gray-200 p-4"> {/* เพิ่ม p-4 เพื่อ padding */}
           <div>

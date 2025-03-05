@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import '../globals.css';
-import Nav from "../component/navbar"
 import SearchableBox from "../component/SearchBox/SearchableBox"
 import SearchableFilter from "../component/SearchBox/SearchableFilter";
 const geistSans = Geist({
@@ -35,7 +34,7 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="en" >  
+  
       <body >
       <div className="grid grid-rows-[auto_1fr_auto] grid-cols-[300px_1fr] min-h-screen ">
 
@@ -43,12 +42,12 @@ export default function RootLayout({
       <SearchableBox />
       <SearchableFilter />
       </aside>
-      <main  className="col-span-1 row-start-2">
+      <div  className="col-span-1 row-start-2">
         {children}
-      </main>
+      </div>
 
     </div>
       </body>
-    </html>
+   
   );
 }
